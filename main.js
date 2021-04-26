@@ -1,3 +1,5 @@
+
+
 // VOORRAAD ARRAY MET TV'S
 const inventory = [
   {
@@ -161,3 +163,42 @@ const inventory = [
     sold: 8,
   },
 ];
+
+
+
+const remainingTv = inventory.map((stock) =>{
+  return stock.originalStock = stock.sold;
+})
+
+function availableForSale (array){
+  let total =0;
+  for (let i =0; i < array.length; i++){
+    total += array[i];
+
+  } return total;
+}
+
+//const stockContainer = document.getElementById('remainingTVs');
+
+
+//2a
+const tvNames = inventory.map((tv)=>{
+  const name = tv.brand + ' ' + '* ' + tv.name + '*';
+  return name;
+})
+console.log("nieuwe array", tvNames);
+
+//2b
+const soldOut = inventory.filter((tv) => {
+  const amountSold = tv.originalStock - tv.sold
+  const isSoldOut = amountSold;
+
+  return isSoldOut;
+
+//2c
+  const sortPriceHighToLow = () =>{
+    inventory.sort((a,b))
+
+  }
+}
+
