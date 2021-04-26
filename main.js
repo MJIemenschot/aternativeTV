@@ -165,20 +165,28 @@ const inventory = [
 ];
 
 
-
 const remainingTv = inventory.map((stock) =>{
-  return stock.originalStock = stock.sold;
+  return stock.originalStock - stock.sold;
 })
-
+console.log(remainingTv);
 function availableForSale (array){
   let total =0;
   for (let i =0; i < array.length; i++){
     total += array[i];
 
-  } return total;
+  }/* array.map((item)=>{ //ALTERNATIEF
+    total += item;
+  })*/
+  return total;
 }
+console.log(availableForSale(remainingTv))
+console.log(remainingTv)
 
-//const stockContainer = document.getElementById('remainingTVs');
+const stockContainer = document.getElementById('tvStock');
+const message = document.createElement('p');
+message.setAttribute('çlass', 'amountForSale')
+message.textContent = availableForSale(remainingTv);
+stockContainer.appendChild(message);
 
 
 //2a
@@ -191,14 +199,9 @@ console.log("nieuwe array", tvNames);
 //2b
 const soldOut = inventory.filter((tv) => {
   const amountSold = tv.originalStock - tv.sold
-  const isSoldOut = amountSold;
+  const isSoldOut = amountSold;});
 
-  return isSoldOut;
+
 
 //2c
-  const sortPriceHighToLow = () =>{
-    inventory.sort((a,b))
-
-  }
-}
 
