@@ -164,13 +164,15 @@ const inventory = [
   },
 ];
 
-
+// 1a
 const remainingTv = inventory.map((stock) =>{
   return stock.originalStock - stock.sold;
-})
-console.log(remainingTv);
+});
+// 1b
+//console.log(remainingTv);
+
 function availableForSale (array){
-  let total =0;
+  let total = 0;
   for (let i =0; i < array.length; i++){
     total += array[i];
 
@@ -179,29 +181,146 @@ function availableForSale (array){
   })*/
   return total;
 }
-console.log(availableForSale(remainingTv))
-console.log(remainingTv)
+//console.log(availableForSale(remainingTv))
+//console.log(remainingTv)
 
 const stockContainer = document.getElementById('tvStock');
 const message = document.createElement('p');
 message.setAttribute('çlass', 'amountForSale')
-message.textContent = availableForSale(remainingTv);
+message.textContent = availableForSale(remainingTv) + ' stuks';
 stockContainer.appendChild(message);
-
-
-//2a
+// 2a
 const tvNames = inventory.map((tv)=>{
-  const name = tv.brand + ' ' + '* ' + tv.name + '*';
+  const name = tv.brand + ' ' + tv.type + ' ' +  '- ' + tv.name;
   return name;
-})
-console.log("nieuwe array", tvNames);
+});
+console.log("nieuwe array: ", tvNames);
 
 //2b
 const soldOut = inventory.filter((tv) => {
-  const amountSold = tv.originalStock - tv.sold
-  const isSoldOut = amountSold;});
-
+  const amountSold = tv.originalStock - tv.sold;
+  const isSoldOut = amountSold === 0;
+  return isSoldOut;
+});
+console.log(soldOut)
 
 
 //2c
+const withAmbiLigth = inventory.filter((tv) =>{
+  return tv.options.ambiLight;
+})
+console.log(withAmbiLigth);
 
+/*inventory.sort((a, b)=>{
+  // a voor b: een negatief getal return
+  // b voor a: een positief getal return
+  //        159     379
+  console.log(a.price, b.price);
+ // a 159 moet voor b  379 komen
+  // a - b
+return a.price - b.price;
+});
+console.log(inventory);*/
+//in een functie
+const sortPriceHighToLow = () =>{
+  inventory.sort((a, b)=>{
+    return b.price - a.price;
+  });
+
+};
+console.log(inventory);
+sortPriceHighToLow();
+
+// 3a
+// targetSales (sum all tvs including prices)
+const tvRevenue = inventory.map((tv)=>{
+  return tv.price * tv.originalStock;
+
+});
+function stockRevenue (tvToSell) {
+  let stock = 0;
+  for(let i =0; i < tvToSell.length; i ++) {
+    stock +=  tvToSell[i];
+  }
+  return stock;
+}
+console.log("Verwachte opbrengst totaal: ", stockRevenue(tvRevenue));
+
+//3b
+// Geef de opbrengst weer van de verkochte tv's
+function salesRevenue (){
+  const soldTVs = inventory.map((tv)=>{
+    return tv.price * tv.sold;
+  });
+  let sold = 0;
+  for(let i = 0; i < soldTVs.length; i ++) {
+    sold +=  soldTVs[i];
+  }
+  return sold;
+}
+console.log("Opbrengst verkochte TVs: ", salesRevenue());
+
+const stockRevenueContainer = document.getElementById('revenue');
+const amount = document.createElement('p');
+amount.setAttribute('çlass', 'revenueStock');
+amount.textContent = '€ ' + stockRevenue(tvRevenue) + ',-';
+stockRevenueContainer.appendChild(amount);
+
+const saleRevenueContainer = document.getElementById('demo');
+const amounts = document.createElement('p');
+amounts.setAttribute('class', 'revenueSales');
+amounts.textContent = '€ ' + salesRevenue() + ',-';
+saleRevenueContainer.appendChild(amounts);
+
+// 4
+
+// 5a
+const tvVieuw = inventory.map((tv) =>{
+  return tv.brand + ' ' + tv.type + ' ' +  '- ' + tv.name;
+});
+console.log(tvVieuw)
+
+// 5b
+//format de prijs van een tv met het  Euroteken ervoor in een functie
+const tvPrices = inventory.map((tv) =>{
+  return '€' + tv.price;
+});
+console.log(tvPrices);
+// 5c
+const tvSizes = inventory.map((tv) => {
+  let allSizes =[];
+  //log alle beschikbare maten voor per tv model
+  const sizesArray = tv.availableSizes;
+  //loop daardoorheen
+  for (let i=0; i < sizesArray.length; i++){
+    //en vang dit op
+    if (sizesArray[i] === sizesArray[sizesArray.length -1]) {allSizes += (sizesArray[i] + " inch" + " ("+ sizesArray[i] * 2.54 + " cm)");}
+    else {allSizes += (sizesArray[i] + " inch" + " ("+ sizesArray[i] * 2.54 + " cm)" +' | ');}
+    //return de nieuwe array
+  } return allSizes;
+});
+
+function generateTvBox(array){
+  let tvInfo = [];
+  for (let i = 0; i < array.length; i++) {
+    tvInfo += '<div class="box">' + tvNames[i] +'<br>'+ tvPrices[i]+'<br>' + tvSizes[i] + '</div>';
+  } return tvInfo;
+}
+document.getElementById("tvContainer").innerHTML = generateTvBox(inventory);
+
+const sButton = document.getElementById("sort");
+sButton.addEventListener("click",() => {
+  console.log(inventory);
+  sortPriceHighToLow();
+});
+
+const xButton = document.getElementById("soldout");
+xButton.addEventListener("click",() => {
+  console.log(soldOut)
+
+});
+const aButton = document.getElementById("ambilight");
+aButton.addEventListener("click",() => {
+  console.log(withAmbiLigth);
+
+});
