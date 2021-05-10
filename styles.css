@@ -1,0 +1,94 @@
+body {
+    background-image: url("distort.gif");
+}
+h1 h2 h3 h4{
+    font-family: Hamburg, helvetica, sans-serif;
+}
+p {
+    font-family: Georgia;
+}
+
+#tvStock {
+    color:red;
+    font-size: 45px;
+    text-shadow: midnightblue;
+}
+.stockCounter {
+    color: white;
+    text-align: center;
+    background-color: lavenderblush;
+    background-image: url("distort.gif");
+    padding: 25px;
+}
+.revenueView {
+    display: flex;
+    justify-content: center;
+}
+/*.revenueView > div {
+    padding: 10px;
+    border: 1px solid blue;
+    text-align: center;
+}*/
+.revenues {
+    background-color: gainsboro;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    text-align: center;
+    width: 250px;
+
+}
+#revenue {
+    color:blue;
+    font-size: 30px;
+}
+.revenueSales {
+    color: green;
+    font-size: 30px;
+
+}
+#tv1 {
+    color: red;
+    background-color: papayawhip;
+}
+#tv2 {
+    color: darkslateblue;
+    background-color: blanchedalmond;
+}
+#tvContainer {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+    background-image: url("distort.gif");
+    width: 80%;
+    margin: auto;
+
+}
+.box {
+    text-align: center;
+    background-color: lightblue;
+    padding: 10px;
+    margin:10px;
+}
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+#soldout, #ambilight, #sort{
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    background-color: dodgerblue;
+}
+#soldout:hover, #ambilight:hover, #sort:hover{
+    background-color: springgreen;
+    color: green;
+}
+#soldout:visited, #ambilight:visited, #sort:visited{
+    background-color: lightgray;
+}
