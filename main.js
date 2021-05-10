@@ -295,7 +295,7 @@ const tvSizes = inventory.map((tv) => {
   for (let i=0; i < sizesArray.length; i++){
     //en vang dit op
     if (sizesArray[i] === sizesArray[sizesArray.length -1]) {allSizes += (sizesArray[i] + " inch" + " ("+ sizesArray[i] * 2.54 + " cm)");}
-    else {allSizes += (sizesArray[i] + " inch" + " ("+ sizesArray[i] * 2.54 + " cm)" +' | ');}
+    else {allSizes += (sizesArray[i] + " inch" + " ("+ sizesArray[i] * 2.54 + " cm)" +' | ')};
     //return de nieuwe array
   } return allSizes;
 });
